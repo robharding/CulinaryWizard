@@ -10,7 +10,7 @@ const Computers: FC<ComputersProps> = ({}) => {
 
   return (
     <div>
-      {data?.computers &&
+      {data &&
         data.computers.map((computer) => (
           <div key={computer.id}>{computer.brand}</div>
         ))}
