@@ -4,6 +4,7 @@ import { FC } from "react";
 import { Button } from "../ui/button";
 import { MoveRight } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
+import NewRecipeDialog from "../NewRecipeDialog";
 
 export const navItems = [
   {
@@ -36,9 +37,11 @@ const Navbar: FC<NavbarProps> = ({}) => {
               </li>
             ))}
             {loggedIn ? (
-              <Button className="flex flex-row text-xs shadow" size={"sm"}>
-                New Recipe <MoveRight className="ml-2 w-4 h-4" />
-              </Button>
+              <NewRecipeDialog>
+                <Button className="flex flex-row text-xs shadow" size={"sm"}>
+                  New Recipe <MoveRight className="ml-2 w-4 h-4" />
+                </Button>
+              </NewRecipeDialog>
             ) : (
               <Button
                 className="flex flex-row text-xs shadow"

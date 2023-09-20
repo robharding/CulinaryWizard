@@ -12,7 +12,7 @@ const Hero: FC<HeroProps> = ({}) => {
   return (
     <div>
       <Badge className="px-4 py-1" variant={"outline"}>
-        Alpha release
+        Alpha 1.0
       </Badge>
       <h1 className="mt-2 font-bold text-5xl md:text-6xl lg:text-8xl">
         Culinary<span className="text-primary">Wizard</span>
