@@ -23,12 +23,10 @@ const Navbar: FC<NavbarProps> = ({}) => {
   const loggedIn = !!session.data?.user;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur ">
+    <header className="sticky top-0 z-50 w-full ">
       <div className="w-full max-w-screen-xl mx-auto">
         <div className="flex h-14 items-center justify-between px-2.5 md:px-20">
-          <h1 className="font-bold">
-            Culinary<span className="text-primary">Wizard</span>
-          </h1>
+          <div></div>
           <div className="hidden sm:flex flex-row items-center gap-4 list-none text-xs font-semibold">
             {navItems.map((navItem, i) => (
               <li key={i}>
