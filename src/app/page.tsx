@@ -12,7 +12,7 @@ export default async function Home() {
         <div className="flex w-full items-center space-x-2">
           <Input className="" placeholder="Search for a recipe..." />
           <Button type="submit">
-            <Send className="w-4 h-4 stroke-3" />
+            <Send className="w-4 h-4 stroke-3 mx-2" />
           </Button>
         </div>
       </div>
