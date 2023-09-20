@@ -6,7 +6,7 @@ interface HeroProps {}
 const Hero: FC<HeroProps> = ({}) => {
   return (
     <div className="text-center">
-      <h1 className="font-bold text-4xl md:text-6xl lg:text-8xl">
+      <h1 className="font-bold text-5xl md:text-6xl lg:text-8xl">
         Culinary<span className="text-primary">Wizard</span>
       </h1>
       <Balancer className="text-lg md:text-2xl lg:text-4xl">
