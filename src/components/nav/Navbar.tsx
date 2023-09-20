@@ -1,10 +1,11 @@
 "use client";
 
 import { FC } from "react";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import { MoveRight } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
 import NewRecipeDialog from "../NewRecipeDialog";
+import { cn } from "@/lib/utils";
 
 export const navItems = [
   {
@@ -38,18 +39,25 @@ const Navbar: FC<NavbarProps> = ({}) => {
             ))}
             {loggedIn ? (
               <NewRecipeDialog>
-                <Button className="flex flex-row text-xs shadow" size={"sm"}>
+                <div
+                  className={cn(
+                    "flex flex-row text-xs shadow",
+                    buttonVariants({ size: "sm" })
+                  )}
+                >
                   New Recipe <MoveRight className="ml-2 w-4 h-4" />
-                </Button>
+                </div>
               </NewRecipeDialog>
             ) : (
-              <Button
-                className="flex flex-row text-xs shadow"
+              <div
+                className={cn(
+                  "flex flex-row text-xs shadow",
+                  buttonVariants({ size: "sm" })
+                )}
                 onClick={() => signIn("google")}
-                size={"sm"}
               >
                 Sign In
-              </Button>
+              </div>
             )}
           </div>
         </div>

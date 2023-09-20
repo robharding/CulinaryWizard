@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -11,12 +11,17 @@ import {
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { trpc } from "@/lib/trpc/client";
 
 interface NewRecipeDialogProps {
   children: React.ReactNode;
 }
 
 const NewRecipeDialog: FC<NewRecipeDialogProps> = ({ children }) => {
+  const [url, setUrl] = useState<string>("");
+
+  const { mutate: createRecipe } = trpc.recipes.createRecipe.useMutation();
+
   return (
     <Dialog>
       <DialogTrigger>{children}</DialogTrigger>
@@ -29,14 +34,21 @@ const NewRecipeDialog: FC<NewRecipeDialogProps> = ({ children }) => {
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
+            <Label htmlFor="url" className="text-right">
               URL
             </Label>
-            <Input id="name" className="col-span-3" />
+            <Input
+              id="url"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              className="col-span-3"
+            />
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit">Generate</Button>
+          <Button type="submit" onClick={() => createRecipe({ url })}>
+            Generate
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
