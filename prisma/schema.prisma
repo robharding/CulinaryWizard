@@ -26,6 +26,22 @@ model Computer {
   cores Int
 }
 
+model Recipe {
+  id              String   @id @default(cuid())
+  title           String
+  description     String
+  cuisine         String
+  cookTime        String
+  ingredients     String[]
+  method          String[]
+  nutritionalInfo String[]
+  prepTime        String
+  tags            String[]
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -64,6 +80,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  recipes       Recipe[]
 }
 
 model VerificationToken {
