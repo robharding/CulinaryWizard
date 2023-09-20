@@ -3,6 +3,7 @@
 import { FC } from "react";
 import { Button } from "../ui/button";
 import { MoveRight } from "lucide-react";
+import { signIn, useSession } from "next-auth/react";
 
 export const navItems = [
   {
@@ -18,6 +19,9 @@ export const navItems = [
 interface NavbarProps {}
 
 const Navbar: FC<NavbarProps> = ({}) => {
+  const session = useSession();
+  const loggedIn = !!session.data?.user;
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur ">
       <div className="w-full max-w-screen-xl mx-auto">
@@ -33,9 +37,19 @@ const Navbar: FC<NavbarProps> = ({}) => {
                 </Button>
               </li>
             ))}
-            <Button className="flex flex-row text-xs shadow" size={"sm"}>
-              New Recipe <MoveRight className="ml-2 w-4 h-4" />
-            </Button>
+            {loggedIn ? (
+              <Button className="flex flex-row text-xs shadow" size={"sm"}>
+                New Recipe <MoveRight className="ml-2 w-4 h-4" />
+              </Button>
+            ) : (
+              <Button
+                className="flex flex-row text-xs shadow"
+                onClick={() => signIn("google")}
+                size={"sm"}
+              >
+                Sign In
+              </Button>
+            )}
           </div>
         </div>
       </div>

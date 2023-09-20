@@ -4,6 +4,7 @@ import { FC, ReactNode, useEffect, useRef } from "react";
 import { motion, useCycle } from "framer-motion";
 import { navItems } from "./Navbar";
 import Link from "next/link";
+import { signOut, useSession } from "next-auth/react";
 
 const APP_DOMAIN = "http://localhost:3000";
 
@@ -30,6 +31,9 @@ export default function MobileNav() {
   const [isOpen, toggleOpen] = useCycle(false, true);
   const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
+
+  const session = useSession();
+  const signedIn = !!session.data?.user;
 
   return (
     <motion.nav
@@ -65,24 +69,26 @@ export default function MobileNav() {
         ))}
 
         <>
-          <MenuItem key="Login">
-            <Link
-              href={`${APP_DOMAIN}/login`}
-              className="flex w-full font-semibold capitalize"
-            >
-              Log in
-            </Link>
-          </MenuItem>
-          <MenuItem className="my-3 h-px w-full bg-gray-300" />
-
-          <MenuItem key="Signup">
-            <Link
-              href={`${APP_DOMAIN}/register`}
-              className="flex w-full font-semibold capitalize"
-            >
-              Sign Up
-            </Link>
-          </MenuItem>
+          {signedIn ? (
+            <MenuItem key="signOut">
+              <Link
+                onClick={() => signOut()}
+                href={"/"}
+                className="flex w-full font-semibold capitalize"
+              >
+                Sign Out
+              </Link>
+            </MenuItem>
+          ) : (
+            <MenuItem key="Login">
+              <Link
+                href={`${APP_DOMAIN}/login`}
+                className="flex w-full font-semibold capitalize"
+              >
+                Sign in
+              </Link>
+            </MenuItem>
+          )}
         </>
       </motion.ul>
       <MenuToggle toggle={toggleOpen} />
