@@ -10,7 +10,7 @@ import MobileNav from "@/components/nav/MobileNav";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Cut The Crap",
+  title: "CulinaryWizard",
   description: "Recipes without the life story",
 };
 
