@@ -20,7 +20,8 @@ interface NewRecipeDialogProps {
 const NewRecipeDialog: FC<NewRecipeDialogProps> = ({ children }) => {
   const [url, setUrl] = useState<string>("");
 
-  const { mutate: createRecipe } = trpc.recipes.createRecipe.useMutation();
+  const { mutate: createRecipe, isLoading } =
+    trpc.recipes.createRecipe.useMutation();
 
   return (
     <Dialog>
@@ -46,7 +47,11 @@ const NewRecipeDialog: FC<NewRecipeDialogProps> = ({ children }) => {
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit" onClick={() => createRecipe({ url })}>
+          <Button
+            type="submit"
+            onClick={() => createRecipe({ url })}
+            disabled={isLoading}
+          >
             Generate
           </Button>
         </DialogFooter>
