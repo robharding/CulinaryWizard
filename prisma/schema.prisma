@@ -37,6 +37,7 @@ model Recipe {
   nutritionalInfo String[]
   prepTime        String
   tags            String[]
+  sourceUrl       String
 
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
