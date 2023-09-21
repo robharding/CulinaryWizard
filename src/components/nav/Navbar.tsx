@@ -6,6 +6,7 @@ import { MoveRight } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
 import NewRecipeDialog from "../NewRecipeDialog";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export const navItems = [
   {
@@ -32,9 +33,15 @@ const Navbar: FC<NavbarProps> = ({}) => {
           <div className="hidden sm:flex flex-row items-center gap-4 list-none text-xs font-semibold">
             {navItems.map((navItem, i) => (
               <li key={i}>
-                <Button variant="ghost" size="sm" className="text-xs">
+                <Link
+                  href={navItem.slug}
+                  className={cn(
+                    buttonVariants({ size: "sm", variant: "ghost" }),
+                    "text-xs"
+                  )}
+                >
                   {navItem.name}
-                </Button>
+                </Link>
               </li>
             ))}
             {loggedIn ? (
