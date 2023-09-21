@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import { motion, useCycle } from "framer-motion";
 import { navItems } from "./Navbar";
 import Link from "next/link";

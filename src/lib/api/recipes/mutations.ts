@@ -2,7 +2,6 @@ import { OpenAI } from "openai";
 import { db } from "../../db";
 import { getUserAuth } from "@/lib/auth/utils";
 import { TRPCError } from "@trpc/server";
-import { Recipe } from "@prisma/client";
 import { NewRecipe, newRecipeSchema } from "@/lib/db/schema/recipe";
 
 const openai = new OpenAI({

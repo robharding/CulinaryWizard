@@ -1,9 +1,6 @@
 import { FC } from "react";
 import { Balancer } from "react-wrap-balancer";
 import { Badge } from "../ui/badge";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { Send } from "lucide-react";
 import HeroInput from "./HeroInput";
 
 interface HeroProps {}
