@@ -1,6 +1,7 @@
 import { OpenAI } from "openai";
 import { db } from "../../db";
 import { getUserAuth } from "@/lib/auth/utils";
+import { TRPCError } from "@trpc/server";
 
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY, // defaults to process.env["OPENAI_API_KEY"]
@@ -10,7 +11,10 @@ export const createRecipe = async (url: string) => {
   const { session } = await getUserAuth();
 
   if (!session?.user) {
-    return;
+    throw new TRPCError({
+      code: "UNAUTHORIZED",
+      message: "You must be logged in to create a recipe",
+    });
   }
 
   // check to see if a recipe with this url already exists
