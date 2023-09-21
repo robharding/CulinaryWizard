@@ -21,12 +21,15 @@ interface NewRecipeDialogProps {
 
 const NewRecipeDialog: FC<NewRecipeDialogProps> = ({ children }) => {
   const [url, setUrl] = useState<string>("");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   const router = useRouter();
   const { toast } = useToast();
 
   const { mutate: createRecipe, isLoading } =
     trpc.recipes.createRecipe.useMutation({
       onSuccess: (recipe) => {
+        setIsOpen(false);
         return router.push(`/recipe/${recipe.id}`);
       },
       onError: (error) => {
@@ -39,7 +42,7 @@ const NewRecipeDialog: FC<NewRecipeDialogProps> = ({ children }) => {
     });
 
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={(prev) => setIsOpen(prev)}>
       <DialogTrigger>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -65,9 +68,9 @@ const NewRecipeDialog: FC<NewRecipeDialogProps> = ({ children }) => {
           <Button
             type="submit"
             onClick={() => createRecipe({ url })}
-            disabled={isLoading}
+            isLoading={isLoading}
           >
-            Generate
+            {!isLoading ? "Generate" : "One Moment..."}
           </Button>
         </DialogFooter>
       </DialogContent>
