@@ -12,6 +12,8 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { trpc } from "@/lib/trpc/client";
+import { useRouter } from "next/navigation";
+import { useToast } from "./ui/use-toast";
 
 interface NewRecipeDialogProps {
   children: React.ReactNode;
@@ -19,9 +21,22 @@ interface NewRecipeDialogProps {
 
 const NewRecipeDialog: FC<NewRecipeDialogProps> = ({ children }) => {
   const [url, setUrl] = useState<string>("");
+  const router = useRouter();
+  const { toast } = useToast();
 
   const { mutate: createRecipe, isLoading } =
-    trpc.recipes.createRecipe.useMutation();
+    trpc.recipes.createRecipe.useMutation({
+      onSuccess: (recipe) => {
+        return router.push(`/recipe/${recipe.id}`);
+      },
+      onError: (error) => {
+        return toast({
+          title: "Error",
+          description: error.message,
+          variant: "destructive",
+        });
+      },
+    });
 
   return (
     <Dialog>

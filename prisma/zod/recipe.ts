@@ -9,7 +9,7 @@ export const recipeSchema = z.object({
   cookTime: z.string(),
   ingredients: z.string().array(),
   method: z.string().array(),
-  nutritionalInfo: z.string().array(),
+  nutritionalInfo: z.string(),
   prepTime: z.string(),
   tags: z.string().array(),
   sourceUrl: z.string(),

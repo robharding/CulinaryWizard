@@ -97,6 +97,8 @@ export const createRecipe = async (url: string) => {
   try {
     recipeJSON = newRecipeSchema.parse(JSON.parse(message));
   } catch (e) {
+    console.log(`ERROR`);
+    console.log(message);
     throw new TRPCError({
       code: "PARSE_ERROR",
       message: "Invalid JSON returned from recipe",

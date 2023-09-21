@@ -34,7 +34,7 @@ model Recipe {
   cookTime        String
   ingredients     String[]
   method          String[]
-  nutritionalInfo String[]
+  nutritionalInfo String
   prepTime        String
   tags            String[]
   sourceUrl       String
