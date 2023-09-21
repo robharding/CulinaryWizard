@@ -41,6 +41,15 @@ model Recipe {
 
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  collections Collection[]
+}
+
+model Collection {
+  id      String   @id @default(cuid())
+  recipes Recipe[]
+  userId  String
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Account {
@@ -81,5 +90,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  recipes       Recipe[]
+
+  recipes     Recipe[]
+  collections Collection[]
 }

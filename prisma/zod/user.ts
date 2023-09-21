@@ -1,5 +1,5 @@
 import * as z from "zod"
-import { CompleteAccount, relatedAccountSchema, CompleteSession, relatedSessionSchema, CompleteRecipe, relatedRecipeSchema } from "./index"
+import { CompleteAccount, relatedAccountSchema, CompleteSession, relatedSessionSchema, CompleteRecipe, relatedRecipeSchema, CompleteCollection, relatedCollectionSchema } from "./index"
 
 export const userSchema = z.object({
   id: z.string(),
@@ -13,6 +13,7 @@ export interface CompleteUser extends z.infer<typeof userSchema> {
   accounts: CompleteAccount[]
   sessions: CompleteSession[]
   recipes: CompleteRecipe[]
+  collections: CompleteCollection[]
 }
 
 /**
@@ -24,4 +25,5 @@ export const relatedUserSchema: z.ZodSchema<CompleteUser> = z.lazy(() => userSch
   accounts: relatedAccountSchema.array(),
   sessions: relatedSessionSchema.array(),
   recipes: relatedRecipeSchema.array(),
+  collections: relatedCollectionSchema.array(),
 }))

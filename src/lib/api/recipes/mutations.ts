@@ -1,18 +1,58 @@
 import { OpenAI } from "openai";
 import { db } from "../../db";
+import { getUserAuth } from "@/lib/auth/utils";
 
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY, // defaults to process.env["OPENAI_API_KEY"]
 });
 
 export const createRecipe = async (url: string) => {
+  const { session } = await getUserAuth();
+
+  if (!session?.user) {
+    return;
+  }
+
   // check to see if a recipe with this url already exists
-  const exisits = await db.recipe.findFirst({
+  const exists = await db.recipe.findFirst({
     where: {
       sourceUrl: url,
     },
   });
-  // Do something
+
+  if (exists) {
+    // check if the user has a collection
+    let collection = await db.collection.findFirst({
+      where: {
+        userId: session.user.id,
+      },
+    });
+
+    // if not, create one
+    if (!collection) {
+      collection = await db.collection.create({
+        data: {
+          userId: session?.user.id,
+        },
+      });
+    }
+
+    // add the recipe to the collection
+    await db.collection.update({
+      where: {
+        id: collection.id,
+      },
+      data: {
+        recipes: {
+          connect: {
+            id: exists.id,
+          },
+        },
+      },
+    });
+
+    return exists;
+  }
 
   const completion = await openai.chat.completions.create({
     messages: [
