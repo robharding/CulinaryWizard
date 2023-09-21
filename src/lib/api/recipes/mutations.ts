@@ -2,6 +2,8 @@ import { OpenAI } from "openai";
 import { db } from "../../db";
 import { getUserAuth } from "@/lib/auth/utils";
 import { TRPCError } from "@trpc/server";
+import { Recipe } from "@prisma/client";
+import { NewRecipe, newRecipeSchema } from "@/lib/db/schema/recipe";
 
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY, // defaults to process.env["OPENAI_API_KEY"]
@@ -85,5 +87,60 @@ export const createRecipe = async (url: string) => {
   });
 
   const message = completion.choices[0].message.content;
-  console.log(message);
+  if ([null, "null"].includes(message) || !message) {
+    throw new TRPCError({
+      code: "BAD_REQUEST",
+      message: "No recipe found on page",
+    });
+  }
+
+  let recipeJSON: NewRecipe;
+  try {
+    recipeJSON = newRecipeSchema.parse(JSON.parse(message));
+  } catch (e) {
+    throw new TRPCError({
+      code: "PARSE_ERROR",
+      message: "Invalid JSON returned from recipe",
+    });
+  }
+
+  // create the recipe
+  const recipe = await db.recipe.create({
+    data: {
+      ...recipeJSON,
+      userId: session.user.id,
+    },
+  });
+
+  // check if the user has a collection
+  let collection = await db.collection.findFirst({
+    where: {
+      userId: session.user.id,
+    },
+  });
+
+  // if not, create one
+  if (!collection) {
+    collection = await db.collection.create({
+      data: {
+        userId: session?.user.id,
+      },
+    });
+  }
+
+  // add the recipe to the collection
+  await db.collection.update({
+    where: {
+      id: collection.id,
+    },
+    data: {
+      recipes: {
+        connect: {
+          id: recipe.id,
+        },
+      },
+    },
+  });
+
+  return recipe;
 };

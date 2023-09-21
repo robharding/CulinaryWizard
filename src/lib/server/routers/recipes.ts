@@ -1,10 +1,10 @@
 import { createRecipe } from "@/lib/api/recipes/mutations";
 import { publicProcedure, router } from "../trpc";
-import { getComputers } from "@/lib/api/computers/queries";
-import { z } from "zod";
+import { newRecipeParams } from "@/lib/db/schema/recipe";
+
 export const recipesRouter = router({
   createRecipe: publicProcedure
-    .input(z.object({ url: z.string() }))
+    .input(newRecipeParams)
     .mutation(async ({ input }) => {
       return createRecipe(input.url);
     }),
