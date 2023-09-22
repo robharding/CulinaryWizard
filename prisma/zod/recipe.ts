@@ -14,6 +14,7 @@ export const recipeSchema = z.object({
   tags: z.string().array(),
   sourceUrl: z.string(),
   userId: z.string(),
+  createdAt: z.date(),
 })
 
 export interface CompleteRecipe extends z.infer<typeof recipeSchema> {

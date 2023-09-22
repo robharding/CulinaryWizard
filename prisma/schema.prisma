@@ -43,6 +43,8 @@ model Recipe {
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   collections Collection[]
+
+  createdAt DateTime @default(now())
 }
 
 model Collection {

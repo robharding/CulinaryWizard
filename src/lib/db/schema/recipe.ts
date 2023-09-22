@@ -4,6 +4,7 @@ import * as z from "zod";
 export const newRecipeSchema = recipeSchema.omit({
   id: true,
   userId: true,
+  createdAt: true,
 });
 export const newRecipeParams = z.object({
   url: z.string(),
