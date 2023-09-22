@@ -22,7 +22,9 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
     <Link href={`/recipe/${recipe.id}`}>
       <Card>
         <CardHeader>
-          <CardTitle className="truncate">{recipe.title}</CardTitle>
+          <CardTitle className="truncate" title={recipe.title}>
+            {recipe.title}
+          </CardTitle>
           <CardDescription className="pt-1 truncate">
             {recipe.tags.map((tag) => (
               <Badge key={tag} className="mr-2" variant="secondary">
