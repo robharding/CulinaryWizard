@@ -17,3 +17,11 @@ export const getRecipeById = async (id: string) => {
 
   return recipe;
 };
+
+export const getRecipes = async () => {
+  const recipes = await db.recipe.findMany({
+    take: 16,
+  });
+
+  return recipes;
+};

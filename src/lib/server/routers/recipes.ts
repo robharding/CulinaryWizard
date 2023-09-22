@@ -2,7 +2,7 @@ import { createRecipe } from "@/lib/api/recipes/mutations";
 import { publicProcedure, router } from "../trpc";
 import { newRecipeParams } from "@/lib/db/schema/recipe";
 import * as z from "zod";
-import { getRecipeById } from "@/lib/api/recipes/queries";
+import { getRecipeById, getRecipes } from "@/lib/api/recipes/queries";
 
 export const recipesRouter = router({
   createRecipe: publicProcedure
@@ -15,4 +15,7 @@ export const recipesRouter = router({
     .query(async ({ input: recipeId }) => {
       return getRecipeById(recipeId);
     }),
+  getRecipes: publicProcedure.query(async () => {
+    return getRecipes();
+  }),
 });
