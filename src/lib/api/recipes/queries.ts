@@ -28,3 +28,17 @@ export const getRecipes = async () => {
 
   return recipes;
 };
+
+export const getRecipesInUserCollection = async (userId: string) => {
+  const recipes = await db.recipe.findMany({
+    where: {
+      collections: {
+        some: {
+          userId,
+        },
+      },
+    },
+  });
+
+  return recipes;
+};
