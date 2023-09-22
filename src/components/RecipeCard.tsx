@@ -36,7 +36,7 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
         </CardContent>
         <CardFooter>
           <Clock className="w-3 h-3 mr-2" />
-          <span className="italic text-sm">{recipe.cookTime}</span>
+          <span className="italic">{recipe.cookTime}</span>
         </CardFooter>
       </Card>
     </Link>
