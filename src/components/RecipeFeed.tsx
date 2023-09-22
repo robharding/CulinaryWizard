@@ -1,8 +1,18 @@
 "use client";
 
 import { trpc } from "@/lib/trpc/client";
-import { Loader2 } from "lucide-react";
+import { Clock, Loader2 } from "lucide-react";
 import { FC } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
+import Link from "next/link";
+import { Badge } from "./ui/badge";
 
 interface RecipeFeedProps {}
 
@@ -12,12 +22,29 @@ const RecipeFeed: FC<RecipeFeedProps> = ({}) => {
   return isLoading ? (
     <Loader2 className="animate-spin" />
   ) : (
-    <div className="max-w-3xl px-4 mx-8 grid grid-cols-2 gap-4">
+    <div className="max-w-3xl px-4 mx-8 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-12">
       {recipes?.map((recipe) => (
-        <div key={recipe.id}>
-          <h2>{recipe.title}</h2>
-          <p>{recipe.description}</p>
-        </div>
+        <Link key={recipe.id} href={`/recipe/${recipe.id}`}>
+          <Card>
+            <CardHeader>
+              <CardTitle className="truncate">{recipe.title}</CardTitle>
+              <CardDescription className="pt-1">
+                {recipe.tags.map((tag) => (
+                  <Badge key={tag} className="mr-2" variant="secondary">
+                    {tag}
+                  </Badge>
+                ))}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p>{recipe.description}</p>
+            </CardContent>
+            <CardFooter>
+              <Clock className="w-4 h-4 mr-2" />
+              {recipe.cookTime}
+            </CardFooter>
+          </Card>
+        </Link>
       ))}
     </div>
   );
