@@ -21,6 +21,9 @@ export const getRecipeById = async (id: string) => {
 export const getRecipes = async () => {
   const recipes = await db.recipe.findMany({
     take: 16,
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 
   return recipes;

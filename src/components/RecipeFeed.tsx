@@ -12,14 +12,14 @@ const RecipeFeed: FC<RecipeFeedProps> = ({}) => {
   return isLoading ? (
     <Loader2 className="animate-spin" />
   ) : (
-    <>
+    <div className="max-w-3xl px-4 mx-8 grid grid-cols-2 gap-4">
       {recipes?.map((recipe) => (
         <div key={recipe.id}>
           <h2>{recipe.title}</h2>
           <p>{recipe.description}</p>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 
