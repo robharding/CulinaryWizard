@@ -3,9 +3,11 @@ import { Balancer } from "react-wrap-balancer";
 import { Badge } from "../ui/badge";
 import HeroInput from "./HeroInput";
 
-interface HeroProps {}
+interface HeroProps {
+  subtitle?: string;
+}
 
-const Hero: FC<HeroProps> = ({}) => {
+const Hero: FC<HeroProps> = ({ subtitle }) => {
   return (
     <div>
       <Badge className="px-4 py-1" variant={"outline"}>
@@ -15,7 +17,7 @@ const Hero: FC<HeroProps> = ({}) => {
         Culinary<span className="text-primary">Wizard</span>
       </h1>
       <Balancer className="text-lg md:text-2xl lg:text-4xl lg:mt-4">
-        Recipies without the Life Stories
+        {subtitle ?? "Recipes without the Life Stories"}
       </Balancer>
       <HeroInput />
     </div>

@@ -1,4 +1,4 @@
-import Hero from "@/components/hero/Hero";
+import HeroWithSubtitle from "@/components/hero/HeroWithSubtitle";
 
 export default function WithHeroLayout({
   children,
@@ -8,7 +8,7 @@ export default function WithHeroLayout({
   return (
     <main className="flex flex-col items-center gap-8 w-full ">
       <div className="m-8"></div>
-      <Hero />
+      <HeroWithSubtitle />
       <div className="max-w-3xl px-4 mx-8">{children}</div>
     </main>
   );
