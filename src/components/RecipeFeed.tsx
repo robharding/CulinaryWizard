@@ -28,7 +28,7 @@ const RecipeFeed: FC<RecipeFeedProps> = ({}) => {
           <Card>
             <CardHeader>
               <CardTitle className="truncate">{recipe.title}</CardTitle>
-              <CardDescription className="pt-1">
+              <CardDescription className="pt-1 truncate">
                 {recipe.tags.map((tag) => (
                   <Badge key={tag} className="mr-2" variant="secondary">
                     {tag}
@@ -37,7 +37,7 @@ const RecipeFeed: FC<RecipeFeedProps> = ({}) => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <p>{recipe.description}</p>
+              <p className="line-clamp-3">{recipe.description}</p>
             </CardContent>
             <CardFooter>
               <Clock className="w-4 h-4 mr-2" />
