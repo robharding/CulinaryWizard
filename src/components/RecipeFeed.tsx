@@ -40,8 +40,8 @@ const RecipeFeed: FC<RecipeFeedProps> = ({}) => {
               <p className="line-clamp-3">{recipe.description}</p>
             </CardContent>
             <CardFooter>
-              <Clock className="w-4 h-4 mr-2" />
-              {recipe.cookTime}
+              <Clock className="w-3 h-3 mr-2" />
+              <span className="italic text-sm">{recipe.cookTime}</span>
             </CardFooter>
           </Card>
         </Link>
