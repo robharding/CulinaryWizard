@@ -5,9 +5,10 @@ import HeroInput from "./HeroInput";
 
 interface HeroProps {
   subtitle?: string;
+  redirectOnSearchClick?: boolean;
 }
 
-const Hero: FC<HeroProps> = ({ subtitle }) => {
+const Hero: FC<HeroProps> = ({ subtitle, redirectOnSearchClick }) => {
   return (
     <div>
       <Badge className="px-4 py-1" variant={"outline"}>
@@ -19,7 +20,7 @@ const Hero: FC<HeroProps> = ({ subtitle }) => {
       <Balancer className="text-lg md:text-2xl lg:text-4xl lg:mt-4">
         {subtitle ?? "Recipes without the Life Stories"}
       </Balancer>
-      <HeroInput />
+      <HeroInput redirectOnSearchClick={redirectOnSearchClick || false} />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import HeroWithSubtitle from "@/components/hero/HeroWithSubtitle";
+import HeroWithSubtitle from "@/components/hero/HeroForPathname";
 
 export default function WithHeroLayout({
   children,
