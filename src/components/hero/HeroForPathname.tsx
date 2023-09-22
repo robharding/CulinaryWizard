@@ -17,11 +17,7 @@ const HeroForPathname: FC<HeroForPathnameProps> = ({}) => {
     return <Hero redirectOnSearchClick={true} />;
   }
 
-  return (
-    <>
-      <Hero />
-    </>
-  );
+  return <Hero />;
 };
 
 export default HeroForPathname;
