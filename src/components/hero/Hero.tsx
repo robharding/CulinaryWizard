@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Balancer } from "react-wrap-balancer";
 import { Badge } from "../ui/badge";
 import HeroInput from "./HeroInput";
+import { HeroDarkModeToggle } from "./HeroDarkModeToggle";
 
 interface HeroProps {
   subtitle?: string;
@@ -11,9 +12,13 @@ interface HeroProps {
 const Hero: FC<HeroProps> = ({ subtitle, redirectOnSearchClick }) => {
   return (
     <div>
-      <Badge className="px-4 py-1" variant={"outline"}>
-        Alpha 1.0
-      </Badge>
+      <div className="flex flex-row gap-2">
+        <Badge className="px-4 py-1" variant={"outline"}>
+          Alpha 1.0
+        </Badge>
+        <HeroDarkModeToggle />
+      </div>
+
       <h1 className="mt-2 font-bold text-5xl md:text-6xl lg:text-8xl">
         Culinary<span className="text-primary">Wizard</span>
       </h1>

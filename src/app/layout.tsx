@@ -6,6 +6,7 @@ import TrpcProvider from "@/lib/trpc/Provider";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/nav/Navbar";
 import MobileNav from "@/components/nav/MobileNav";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,10 +25,17 @@ export default function RootLayout({
       <body className={inter.className}>
         <NextAuthProvider>
           <TrpcProvider>
-            <Navbar />
-            <MobileNav />
-            {children}
-            <Toaster />
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Navbar />
+              <MobileNav />
+              {children}
+              <Toaster />
+            </ThemeProvider>
           </TrpcProvider>
         </NextAuthProvider>
       </body>
