@@ -1,12 +1,15 @@
-import RecipeFeed from "@/components/RecipeFeed";
 import Hero from "@/components/hero/Hero";
 
-export default async function Home() {
+export default function WithHeroLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <main className="flex flex-col items-center gap-8 w-full ">
       <div className="m-8"></div>
       <Hero />
-      <RecipeFeed />
+      <div className="max-w-3xl px-4 mx-8">{children}</div>
     </main>
   );
 }

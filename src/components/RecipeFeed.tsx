@@ -13,7 +13,7 @@ const RecipeFeed: FC<RecipeFeedProps> = ({}) => {
   return isLoading ? (
     <Loader2 className="animate-spin" />
   ) : (
-    <div className="max-w-3xl px-4 mx-8 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-12">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-12">
       {recipes?.map((recipe) => (
         <RecipeCard key={recipe.id} recipe={recipe} />
       ))}
