@@ -35,13 +35,14 @@ export default function MobileNav() {
   const session = useSession();
   const signedIn = !!session.data?.user;
 
-  const handleSignOut = () => {
-    signOut();
+  const handleSignOut = async () => {
+    await signOut();
     toggleOpen();
   };
 
-  const handleSignIn = () => {
-    signIn("google");
+  const handleSignIn = async () => {
+    await signIn("google");
+    toggleOpen();
   };
 
   return (
