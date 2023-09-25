@@ -4,7 +4,7 @@ import { ReactNode, useEffect, useRef } from "react";
 import { motion, useCycle } from "framer-motion";
 import { navItems } from "./Navbar";
 import Link from "next/link";
-import { signOut, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const APP_DOMAIN = "http://localhost:3000";
 
@@ -34,6 +34,15 @@ export default function MobileNav() {
 
   const session = useSession();
   const signedIn = !!session.data?.user;
+
+  const handleSignOut = () => {
+    signOut();
+    toggleOpen();
+  };
+
+  const handleSignIn = () => {
+    signIn("google");
+  };
 
   return (
     <motion.nav
@@ -72,7 +81,7 @@ export default function MobileNav() {
           {signedIn ? (
             <MenuItem key="signOut">
               <Link
-                onClick={() => signOut()}
+                onClick={handleSignOut}
                 href={"/"}
                 className="flex w-full font-semibold capitalize"
               >
@@ -82,7 +91,8 @@ export default function MobileNav() {
           ) : (
             <MenuItem key="Login">
               <Link
-                href={`${APP_DOMAIN}/login`}
+                onClick={handleSignIn}
+                href={`/`}
                 className="flex w-full font-semibold capitalize"
               >
                 Sign in
