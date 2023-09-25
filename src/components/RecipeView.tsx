@@ -7,8 +7,9 @@ interface RecipeViewProps {
 
 const RecipeView: FC<RecipeViewProps> = ({ recipe }) => {
   return (
-    <div className="w-max">
-      <h1>Hello World</h1>
+    <div className="mt-8">
+      <h1 className="text-3xl font-bold">{recipe.title}</h1>
+      <h2 className="text-xl">{recipe.description}</h2>
     </div>
   );
 };
