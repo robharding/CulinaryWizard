@@ -20,7 +20,7 @@ interface RecipeCardProps {
 const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
   return (
     <Link href={`/recipe/${recipe.id}`}>
-      <Card className="h-full">
+      <Card className="h-full flex flex-col justify-between">
         <CardHeader>
           <CardTitle className="truncate" title={recipe.title}>
             {recipe.title}
