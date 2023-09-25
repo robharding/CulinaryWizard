@@ -63,19 +63,23 @@ export default function MobileNav() {
         variants={variants}
         className="absolute grid w-full gap-3 px-10 py-16"
       >
-        {navItems.map(({ name, slug }) => (
-          <div key={slug} className="grid gap-3">
-            <MenuItem>
-              <Link
-                href=""
-                onClick={() => toggleOpen()}
-                className="flex w-full font-semibold capitalize"
-              >
-                {name}
-              </Link>
-            </MenuItem>
-            <MenuItem className="my-3 h-px w-full bg-gray-300" />
-          </div>
+        {navItems.map((navItem) => (
+          <>
+            {navItem.loggedIn && !signedIn ? null : (
+              <div key={navItem.slug} className="grid gap-3">
+                <MenuItem>
+                  <Link
+                    href=""
+                    onClick={() => toggleOpen()}
+                    className="flex w-full font-semibold capitalize"
+                  >
+                    {navItem.name}
+                  </Link>
+                </MenuItem>
+                <MenuItem className="my-3 h-px w-full bg-gray-300" />
+              </div>
+            )}
+          </>
         ))}
 
         <>
