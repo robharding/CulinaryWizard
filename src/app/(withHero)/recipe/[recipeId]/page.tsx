@@ -1,3 +1,4 @@
+import RecipeView from "@/components/RecipeView";
 import { api } from "@/lib/trpc/api";
 import type { NextPage } from "next";
 
@@ -12,7 +13,7 @@ const RecipePage: NextPage<RecipePageProps> = async ({
 }) => {
   const recipe = await api.recipes.getRecipe.query(recipeId);
 
-  return <div>{JSON.stringify(recipe)}</div>;
+  return <RecipeView recipe={recipe} />;
 };
 
 export default RecipePage;

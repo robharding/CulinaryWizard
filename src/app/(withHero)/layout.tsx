@@ -1,4 +1,4 @@
-import HeroWithSubtitle from "@/components/hero/HeroForPathname";
+import HeroForPathname from "@/components/hero/HeroForPathname";
 
 export default function WithHeroLayout({
   children,
@@ -6,10 +6,10 @@ export default function WithHeroLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="flex flex-col items-center gap-8 w-full ">
+    <main>
       <div className="m-4"></div>
-      <HeroWithSubtitle />
-      <div className="max-w-3xl px-4 mx-8">{children}</div>
+      <HeroForPathname />
+      <div className="flex mx-auto max-w-4xl px-10">{children}</div>
     </main>
   );
 }
