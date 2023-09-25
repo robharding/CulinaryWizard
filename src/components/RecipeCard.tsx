@@ -20,7 +20,7 @@ interface RecipeCardProps {
 const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
   return (
     <Link href={`/recipe/${recipe.id}`}>
-      <Card>
+      <Card className="h-full">
         <CardHeader>
           <CardTitle className="truncate" title={recipe.title}>
             {recipe.title}
