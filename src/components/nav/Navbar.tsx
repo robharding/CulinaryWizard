@@ -16,6 +16,7 @@ export const navItems = [
   {
     name: "Collection",
     slug: "/collection",
+    loggedIn: true,
   },
 ];
 
@@ -32,17 +33,21 @@ const Navbar: FC<NavbarProps> = ({}) => {
           <div></div>
           <div className="hidden sm:flex flex-row items-center gap-4 list-none text-xs font-semibold">
             {navItems.map((navItem, i) => (
-              <li key={i}>
-                <Link
-                  href={navItem.slug}
-                  className={cn(
-                    buttonVariants({ size: "sm", variant: "ghost" }),
-                    "text-xs"
-                  )}
-                >
-                  {navItem.name}
-                </Link>
-              </li>
+              <>
+                {!loggedIn && navItem.loggedIn ? null : (
+                  <li key={i}>
+                    <Link
+                      href={navItem.slug}
+                      className={cn(
+                        buttonVariants({ size: "sm", variant: "ghost" }),
+                        "text-xs"
+                      )}
+                    >
+                      {navItem.name}
+                    </Link>
+                  </li>
+                )}
+              </>
             ))}
             {loggedIn ? (
               <NewRecipeDialog>
