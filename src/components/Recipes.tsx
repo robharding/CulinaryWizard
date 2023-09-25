@@ -12,7 +12,7 @@ const Recipes: FC<RecipesProps> = ({ isLoading, recipes }) => {
   return isLoading ? (
     <Loader2 className="animate-spin w-10 h-10 mt-24 stroke-primary" />
   ) : (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-12">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-12 mt-6">
       {recipes?.map((recipe) => (
         <RecipeCard key={recipe.id} recipe={recipe} />
       ))}
