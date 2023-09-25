@@ -44,7 +44,7 @@ const NewRecipeDialog: FC<NewRecipeDialogProps> = ({ children }) => {
   return (
     <Dialog open={isOpen} onOpenChange={(value) => setIsOpen(value)}>
       <DialogTrigger>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] bg-white dark:bg-inherit">
         <DialogHeader>
           <DialogTitle>Import a Recipe</DialogTitle>
           <DialogDescription>
