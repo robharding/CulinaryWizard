@@ -12,6 +12,7 @@ import { Recipe } from "@/lib/db/schema/recipe";
 import Link from "next/link";
 import { Badge } from "./ui/badge";
 import { Clock } from "lucide-react";
+import Tags from "./Tags";
 
 interface RecipeCardProps {
   recipe: Recipe;
@@ -25,12 +26,8 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
           <CardTitle className="truncate" title={recipe.title}>
             {recipe.title}
           </CardTitle>
-          <CardDescription className="pt-1 truncate">
-            {recipe.tags.map((tag) => (
-              <Badge key={tag} className="mr-2" variant="secondary">
-                {tag}
-              </Badge>
-            ))}
+          <CardDescription>
+            <Tags tags={recipe.tags} />
           </CardDescription>
         </CardHeader>
         <CardContent>
