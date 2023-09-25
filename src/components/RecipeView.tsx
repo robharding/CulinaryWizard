@@ -25,13 +25,21 @@ const RecipeView: FC<RecipeViewProps> = ({ recipe }) => {
 
       <div className="m-4" />
 
-      <h3 className="font-bold">Ingredients</h3>
-      {recipe.ingredients.map((ingredient, i) => (
-        <div key={i}>
-          <Checkbox className="mr-2" />
-          <span>{ingredient}</span>
+      <div className="grid grid-cols-1 lg:grid-cols-2">
+        <div>
+          <h3 className="font-bold">Ingredients</h3>
+          {recipe.ingredients.map((ingredient, i) => (
+            <div key={i}>
+              <Checkbox className="mr-2" />
+              <span>{ingredient}</span>
+            </div>
+          ))}
         </div>
-      ))}
+        <div>
+          <h3 className="font-bold">Nutritional Info</h3>
+          {recipe.nutritionalInfo}
+        </div>
+      </div>
 
       <div className="m-4" />
 
