@@ -69,7 +69,7 @@ export default function MobileNav() {
               <div key={navItem.slug} className="grid gap-3">
                 <MenuItem>
                   <Link
-                    href=""
+                    href={navItem.slug}
                     onClick={() => toggleOpen()}
                     className="flex w-full font-semibold capitalize"
                   >
