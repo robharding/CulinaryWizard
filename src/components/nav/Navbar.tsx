@@ -33,9 +33,9 @@ const Navbar: FC<NavbarProps> = ({}) => {
           <div></div>
           <div className="hidden sm:flex flex-row items-center gap-4 list-none text-xs font-semibold">
             {navItems.map((navItem, i) => (
-              <>
+              <div key={i}>
                 {!loggedIn && navItem.loggedIn ? null : (
-                  <li key={i}>
+                  <li>
                     <Link
                       href={navItem.slug}
                       className={cn(
@@ -47,7 +47,7 @@ const Navbar: FC<NavbarProps> = ({}) => {
                     </Link>
                   </li>
                 )}
-              </>
+              </div>
             ))}
             {loggedIn ? (
               <NewRecipeDialog>

@@ -64,9 +64,9 @@ export default function MobileNav() {
         className="absolute grid w-full gap-3 px-10 py-16"
       >
         {navItems.map((navItem) => (
-          <>
+          <div key={navItem.slug}>
             {navItem.loggedIn && !signedIn ? null : (
-              <div key={navItem.slug} className="grid gap-3">
+              <div className="grid gap-3">
                 <MenuItem>
                   <Link
                     href={navItem.slug}
@@ -79,7 +79,7 @@ export default function MobileNav() {
                 <MenuItem className="my-3 h-px w-full bg-gray-300" />
               </div>
             )}
-          </>
+          </div>
         ))}
 
         <>
