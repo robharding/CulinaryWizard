@@ -71,7 +71,7 @@ export const createRecipe = async (url: string) => {
             cookTime: v.string(),
             ingredients: v.array(v.string()),
             method: v.array(v.string()),
-            nutritionalInfo: v.string(),
+            nutritionalInfo: v.array(v.string()),
             prepTime: v.string(),
             tags: v.array(v.string()),
             sourceUrl: v.string(),
