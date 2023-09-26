@@ -42,7 +42,10 @@ const NewRecipeDialog: FC<NewRecipeDialogProps> = ({ children }) => {
     });
 
   return (
-    <Dialog open={isOpen} onOpenChange={(value) => setIsOpen(value)}>
+    <Dialog
+      open={isOpen}
+      onOpenChange={(value) => !isLoading && setIsOpen(value)}
+    >
       <DialogTrigger>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-[425px] bg-white dark:bg-inherit">
         <DialogHeader>
