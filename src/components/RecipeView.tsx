@@ -37,7 +37,18 @@ const RecipeView: FC<RecipeViewProps> = ({ recipe }) => {
         </div>
         <div>
           <h3 className="font-bold">Nutritional Info</h3>
-          {recipe.nutritionalInfo}
+          {recipe.nutritionalInfo.length > 0 ? (
+            <>
+              {recipe.nutritionalInfo.map((item, i) => (
+                <div key={i}>
+                  <Checkbox className="mr-2" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </>
+          ) : (
+            <p>Not provided</p>
+          )}
         </div>
       </div>
 

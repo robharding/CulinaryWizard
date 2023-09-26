@@ -1,12 +1,13 @@
 "use client";
 
-import { FC } from "react";
-import { Button, buttonVariants } from "../ui/button";
+import { FC, useState } from "react";
+import { buttonVariants } from "../ui/button";
 import { MoveRight } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
 import NewRecipeDialog from "../NewRecipeDialog";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useMotionValueEvent, useScroll } from "framer-motion";
 
 export const navItems = [
   {
@@ -23,11 +24,22 @@ export const navItems = [
 interface NavbarProps {}
 
 const Navbar: FC<NavbarProps> = ({}) => {
+  const { scrollY } = useScroll();
+  const [hookedYPostion, setHookedYPosition] = useState(0);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setHookedYPosition(latest);
+  });
+
   const session = useSession();
   const loggedIn = !!session.data?.user;
 
   return (
-    <header className="sticky top-0 z-50 w-full ">
+    <header
+      className={cn(
+        "sticky top-0 z-50 w-full transition-all duration-500",
+        hookedYPostion > 50 && "sm:bg-white sm:dark:bg-black drop-shadow"
+      )}
+    >
       <div className="w-full max-w-screen-xl mx-auto">
         <div className="flex h-14 items-center justify-between px-2.5 md:px-20">
           <div></div>
