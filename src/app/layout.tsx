@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/nav/Navbar";
 import MobileNav from "@/components/nav/MobileNav";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body
+        className={cn(
+          "antialiased font-sans min-h-screen grainy",
+          inter.className
+        )}
+      >
         <NextAuthProvider>
           <TrpcProvider>
             <ThemeProvider
