@@ -24,10 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={cn(
-          "antialiased font-sans min-h-screen grainy",
-          inter.className
-        )}
+        className={cn("antialiased font-sans min-h-screen", inter.className)}
       >
         <NextAuthProvider>
           <TrpcProvider>
