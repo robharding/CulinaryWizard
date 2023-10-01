@@ -25,7 +25,7 @@ const RecipeView: FC<RecipeViewProps> = ({ recipe }) => {
 
       <div className="m-4" />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2">
+      <div className="flex flex-col sm:flex-row gap-4 sm:gap-28">
         <div>
           <h3 className="font-bold">Ingredients</h3>
           {recipe.ingredients.map((ingredient, i) => (
